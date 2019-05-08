@@ -11,7 +11,7 @@ int main (void){
 	InitUART();
 	PWMInit();
 	InitADC();
-	InitDAC();
+	// InitDAC();
 	
 	xTaskCreate(vTaskLed1, "LED PORTB 3-8", 32, NULL, 1, NULL);
 	xTaskCreate(vTaskButtonPA1, "Button PA1", 32, NULL, 1, NULL);
