@@ -11,7 +11,7 @@ int main (void){
 	InitUART();
 	PWMInit();
 	InitADC();
-	// InitDAC();
+//	InitDAC();
 	
 	xTaskCreate(vTaskLed1, "LED PORTB 3-8", 32, NULL, 1, NULL);
 	xTaskCreate(vTaskButtonPA1, "Button PA1", 32, NULL, 1, NULL);
@@ -20,6 +20,10 @@ int main (void){
 	xTaskCreate(vTaskNextionHMI, "HMI", 128, NULL, 1, NULL);
 	
 	SendDataADC = xQueueCreate (5, sizeof (uint16_t));
+	
+	flashUnlock();
+	flashWriteData(0x0801FC00, 0x515151FF);
+	flashlock();
 	
 	vTaskStartScheduler();
 	
